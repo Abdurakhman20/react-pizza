@@ -38,14 +38,12 @@ export const cartSlice = createSlice({
       } else {
         state.items = state.items.filter((item) => item.id !== findItem.id);
       }
-      // if (findItem.count === 1) {
-      //   state.items = state.items.filter((item) => item.id !== findItem.id);
-      // }
       state.totalPrice = state.items.reduce((sum, item) => {
         return item.price * item.count + sum;
       }, 0);
     },
   },
 });
+export const selectCart = (state) => state.cart; // Функция - selector
 export const { addItem, removeItem, clearItems, minusItem } = cartSlice.actions;
 export default cartSlice.reducer;
