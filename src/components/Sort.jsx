@@ -12,6 +12,7 @@ const Sort = () => {
   const dispatch = useDispatch();
   const sortType = useSelector((state) => state.filter.sortType);
   const sortMethod = useSelector((state) => state.filter.sortMethod);
+  const sortRef = React.useRef();
 
   const [isVisible, setIsVisible] = React.useState(false);
 
@@ -24,9 +25,20 @@ const Sort = () => {
       ? dispatch(setSortMethod("desc"))
       : dispatch(setSortMethod("asc"));
   };
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setIsVisible(false);
+      }
+    };
+    document.body.addEventListener("click", handleClickOutside);
 
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
-    <div className="sort">
+    <div className="sort" ref={sortRef}>
       <div className="sort__label">
         <svg
           className={`sort__svg-${sortMethod}`}

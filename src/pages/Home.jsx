@@ -74,14 +74,11 @@ const Home = () => {
     setIsLoading(true);
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
-    axios
-      .get(
-        `https://644feb3cba9f39c6ab6fd55e.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortProp}&order=${sortMethod}${search}`
-      )
-      .then((response) => {
-        setPizzasData(response.data);
-        setIsLoading(false);
-      });
+    const res = await axios.get(
+      `https://644feb3cba9f39c6ab6fd55e.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortProp}&order=${sortMethod}${search}`
+    );
+    setPizzasData(res.data);
+    setIsLoading(false);
     window.scrollTo(0, 0);
   };
   React.useEffect(() => {
