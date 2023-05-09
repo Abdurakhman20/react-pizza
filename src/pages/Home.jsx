@@ -24,8 +24,6 @@ const Home = () => {
     useSelector(selectFilter);
   const { items, status } = useSelector((state) => state.pizzas);
 
-  console.log(searchValue);
-
   const onChangeCategory = (index) => {
     dispatch(setCategoryId(index));
   };
