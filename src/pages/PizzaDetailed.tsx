@@ -2,8 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 
-const PizzaDetailed = () => {
-  const [pizza, setPizza] = React.useState();
+const PizzaDetailed: React.FC = () => {
+  const [pizza, setPizza] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+  }>();
   const { id } = useParams();
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -22,7 +26,7 @@ const PizzaDetailed = () => {
   }, []);
 
   if (!pizza) {
-    return "...Loading";
+    return <>...Loading</>;
   }
   return (
     <div className="container">
