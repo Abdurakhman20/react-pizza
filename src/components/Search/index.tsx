@@ -6,20 +6,20 @@ import { useDispatch } from "react-redux";
 const Search = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = React.useState("");
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onClickClearHandler = () => {
     dispatch(setSearchValue(""));
     setInputValue("");
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
   const updateSearchValue = React.useCallback(
-    debounce((value) => {
+    debounce((value: string) => {
       dispatch(setSearchValue(value));
     }, 250),
     []
   );
-  const onChangeInputHandler = (event) => {
+  const onChangeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     updateSearchValue(event.target.value);
   };
@@ -38,7 +38,7 @@ const Search = () => {
       </svg>
       <input
         ref={inputRef}
-        onChange={(event) => onChangeInputHandler(event)}
+        onChange={onChangeInputHandler}
         value={inputValue}
         className={styles.searchBlock__input}
         placeholder="Введите название пиццы ..."

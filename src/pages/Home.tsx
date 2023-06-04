@@ -12,22 +12,24 @@ import {
   setCurrentPage,
   setFilters,
   selectFilter,
+  selectSortProp,
 } from "../redux/slices/filterSlice";
-import { fetchPizzas } from "../redux/slices/pizzasSlice";
+import { fetchPizzas, selectPizzas } from "../redux/slices/pizzasSlice";
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isMounted = React.useRef(false);
-  const sortProp = useSelector((state) => state.filter.sortType.sortProp);
+
+  const sortProp = useSelector(selectSortProp);
   const { categoryId, sortMethod, currentPage, searchValue } =
     useSelector(selectFilter);
-  const { items, status } = useSelector((state) => state.pizzas);
+  const { items, status } = useSelector(selectPizzas);
 
-  const onChangeCategory = (index) => {
+  const onChangeCategory = (index: number) => {
     dispatch(setCategoryId(index));
   };
-  const onChangePageHandler = (pageCount) => {
+  const onChangePageHandler = (pageCount: number) => {
     dispatch(setCurrentPage(pageCount));
   };
 
@@ -35,6 +37,7 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         category,
         sortProp,
@@ -83,7 +86,7 @@ const Home = () => {
     }
   }, []);
 
-  const pizzasArr = items.map((pizza) => (
+  const pizzasArr = items.map((pizza: any) => (
     <PizzaBlock key={pizza.id} {...pizza} />
   ));
   const skeletons = [...new Array(6)].map((_, index) => (
@@ -95,7 +98,7 @@ const Home = () => {
       <div className="content__top">
         <Categories
           value={categoryId}
-          onChangeCategory={(index) => onChangeCategory(index)}
+          onChangeCategory={(index: number) => onChangeCategory(index)}
         />
         <Sort />
       </div>
@@ -118,7 +121,7 @@ const Home = () => {
 
       <Pagination
         currentPage={currentPage}
-        onChangePage={(pageCount) => onChangePageHandler(pageCount)}
+        onChangePage={(pageCount: number) => onChangePageHandler(pageCount)}
       />
     </div>
   );

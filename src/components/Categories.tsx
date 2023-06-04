@@ -1,21 +1,20 @@
 import React from "react";
 
-const Categories = ({ value, onChangeCategory }) => {
+type CategoriesProps = {
+  value: number;
+  onChangeCategory: (index: number) => void;
+};
+const categories = [
+  // Массив с категориями для сортировки
+  "Все",
+  "Мясные",
+  "Вегетарианская",
+  "Гриль",
+  "Острые",
+  "Закрытые",
+];
+const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
   // Из Redux-Toolkit в Home.jsx получили value и onChangeCategory и передали в компонент Categories.jsx
-  const categories = [
-    // Массив с категориями для сортировки
-    "Все",
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
-  ];
-  const onClickCategoryHandler = (index) => {
-    // Функция вызывается при клике на категорию
-    onChangeCategory(index);
-    // Достали из пропсов и вызвали onChangeCategory в функции onClickCategoryHandler
-  };
 
   return (
     <div className="categories">
@@ -24,7 +23,7 @@ const Categories = ({ value, onChangeCategory }) => {
           // Итерация по массиву categories
           <li
             // Функция вызывается при клике на категорию
-            onClick={() => onClickCategoryHandler(index)}
+            onClick={() => onChangeCategory(index)}
             className={value === index ? "active" : ""}
             // Если значение value(индекс выбранной категории) совпадает с индексом элемента массива
             // то присваиваем класс active
