@@ -1,27 +1,29 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setSortType,
   setSortMethod,
-  selectFilter,
+  SortPropEnum,
 } from "../redux/slices/filterSlice";
 
 type SortItem = {
   name: string;
-  sortProp: string;
+  sortProp: SortPropEnum;
+};
+type SortProps = {
+  sortType: SortItem;
+  sortMethod: string;
 };
 
 export const SORT_ITEMS_LIST: SortItem[] = [
-  { name: "популярности", sortProp: "rating" },
-  { name: "цене", sortProp: "price" },
-  { name: "алфавиту", sortProp: "title" },
+  { name: "популярности", sortProp: SortPropEnum.RATING },
+  { name: "цене", sortProp: SortPropEnum.PRICE },
+  { name: "алфавиту", sortProp: SortPropEnum.TITLE },
 ];
 
-const Sort = () => {
+const Sort: React.FC<SortProps> = React.memo(({ sortType, sortMethod }) => {
   const dispatch = useDispatch();
-  const { sortType, sortMethod } = useSelector(selectFilter);
   const sortRef = React.useRef<HTMLDivElement>(null);
-
   const [isVisible, setIsVisible] = React.useState(false);
 
   const onSortClickHandler = (object: SortItem) => {
@@ -82,5 +84,5 @@ const Sort = () => {
       )}
     </div>
   );
-};
+});
 export default Sort;
