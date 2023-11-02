@@ -23,7 +23,9 @@ body {
 
 .content {
   padding: 40px 0;
-
+  @media screen and (max-width: 576px) {
+    padding: 15px 0px;
+  }
   &__title {
     margin: 40px 0;
     font-size: 38px;
@@ -82,13 +84,13 @@ body {
           display: none;
         }
       }
-      @media (max-width: 760px) {
-        .categories {
-          ul {
-            justify-content: left;
-            li {
-              padding: 8px 20px;
-            }
+    }
+    @media (max-width: 760px) {
+      .categories {
+        ul {
+          justify-content: left;
+          li {
+            padding: 8px 20px;
           }
         }
       }
@@ -110,6 +112,12 @@ body {
   &--cart {
     max-width: 820px;
     margin: 90px auto;
+    @media screen and (max-width: 768px) {
+      margin: 40px 15px;
+    }
+    @media screen and (max-width: 576px) {
+      margin: 20px 15px;
+    }
     .content__title {
       margin: 0;
     }
@@ -121,6 +129,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 576px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+    }
   }
 
   .content__title {
@@ -182,12 +196,19 @@ body {
     border-top: 1px solid $gray-line;
     padding-top: 30px;
     margin-top: 30px;
+    @media screen and (max-width: 768px) {
+      gap: 5px;
+    }
+    @media screen and (max-width: 567px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
 
     &-img {
       display: flex;
       align-items: center;
       margin-right: 15px;
-      width: 10%;
 
       img {
         width: 80px;
@@ -200,7 +221,6 @@ body {
       flex-direction: column;
       justify-content: center;
       width: 40%;
-
       h3 {
         font-weight: bold;
         font-size: 22px;
@@ -212,14 +232,22 @@ body {
         font-size: 18px;
         color: #8d8d8d;
       }
+      @media screen and (max-width: 567px) {
+        h3 {
+          font-size: 18px;
+          line-height: 1.2;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
     }
 
     &-count {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: 13%;
 
+      gap: 10px;
       &-minus {
         svg {
           path:first-of-type {
@@ -250,7 +278,6 @@ body {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      width: 4%;
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
@@ -281,6 +308,9 @@ body {
 
   &__bottom {
     margin: 50px 0;
+    @media screen and (max-width: 567px) {
+      margin: 20px 0px;
+    }
 
     &-details {
       display: flex;
@@ -295,6 +325,14 @@ body {
           }
         }
       }
+      @media screen and (max-width: 567px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 14px;
+        }
+      }
     }
 
     &-buttons {
@@ -302,11 +340,18 @@ body {
       justify-content: space-between;
       margin-top: 40px;
 
+      @media screen and (max-width: 567px) {
+        margin-top: 20px;
+        font-size: 14px;
+        gap: 5px;
+      }
+
       .go-back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 210px;
+        font-size: inherit;
 
         border-color: darken($color: $gray-line, $amount: 10);
 
@@ -314,6 +359,7 @@ body {
           color: darken($color: $gray-line, $amount: 20);
           font-weight: 500;
           font-weight: 600;
+          font-size: inherit;
         }
 
         &:hover {
@@ -339,6 +385,7 @@ body {
         font-weight: 600;
         width: 210px;
         padding: 16px;
+        font-size: inherit;
       }
     }
   }
