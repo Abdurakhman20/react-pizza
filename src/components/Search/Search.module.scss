@@ -1,11 +1,12 @@
 .searchBlock {
   position: relative;
-  left: -100px;
+  max-width: 400px;
+  width: 100%;
 }
 .searchBlock__input {
   border: 2px solid rgb(0, 0, 0, 0.1);
   padding: 12px 20px;
-  width: 400px;
+  width: 100%;
   border-radius: 12px;
   padding-left: 50px;
   font-size: 18px;
@@ -23,6 +24,7 @@
 .searchBlock__closeIcon {
   width: 25px;
   height: 25px;
+  cursor: pointer;
   opacity: 0.3;
   position: absolute;
   right: 15px;

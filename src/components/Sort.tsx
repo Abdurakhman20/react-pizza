@@ -64,7 +64,7 @@ const Sort: React.FC<SortProps> = React.memo(({ sortType, sortMethod }) => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>По:</b>
         <span onClick={() => setIsVisible(!isVisible)}>{sortType.name}</span>
       </div>
       {isVisible && (
